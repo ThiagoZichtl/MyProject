@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<p:tabView>
+		<p:tab title="Cadastro de Produtos">
+			<h:form id="form1">
+				<h:panelGrid columns="2" id="form1">
+					<h:outputText value="Nome" />
+					<p:inputText value="#{mb.produto.nomeProd}" />
+
+					<h:outputText value="Preço" />
+					<p:inputNumber value="#{mb.produto.precoProd}" />
+
+					<h:outputText value="Quantidade" />
+					<p:inputNumber value="#{mb.produto.quantProd}" />
+
+					<p:commandButton value="Gravar" action="#{mb.gravar}" ajax="true"></p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</p:tab>
+
+		<p:tab title="Listar Produtos">
+			<h:form id="form2">
+				<p:dataTable id="forms2" rows="10" paginator="true" value=""
+					width="#{mb.produtos}" style="text-align:center">
+					<p:column headerText="Nome do Produto">
+						<h:outputText value="#{linha.nomeProd}" />
+					</p:column>
+					<p:column headerText="Preço">
+						<h:outputText value="#{linha.precoProd}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{linha.quantProd}" />
+					</p:column>
+					<p:column headerText="Data">
+						<h:outputText value="01/01/18" />
+					</p:column>
+					<p:column headerText="Editar">
+						<p:commandButton actionListener="editar" id="iconEditar"
+							icon="ui-icon-pencil" title="Icon Only" />
+					</p:column>
+					<p:column headerText="Remover">
+						<p:commandButton actionListener="excluir" id="iconRemover"
+							icon="ui-icon-trash" title="Icon Only" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<!-- <p:dataList rows="3" paginator="true" value="#{mb.produtos}"
+					var="linha">
+					<p:column headerText="Codigo">
+						<h:outputText value="#{linha.idProduto}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{linha.nomeProd}" />
+					</p:column>
+
+					<p:column headerText="Preco">
+						<h:outputText value="#{linha.precoProd}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{linha.quantProd}" />
+					</p:column>
+				</p:dataList> -->
+		</p:tab>
+	</p:tabView>
+	<p:dialog header="Alterar os Dados" width="consulta" modal="true"
+		widgetVar="menu">
+		<h:form id="form3">
+			<h:inputHidden value="#{mb.produto.idProduto}">
+			</h:inputHidden>
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome" />
+				<p:inputText value="#{mb.produto.nomeProd}"></p:inputText>
+				<h:outputText value="Preco" />
+				<p:inputText value="#{mb.produto.precoProd}"></p:inputText>
+				<h:outputText value="Quantidade" />
+				<p:inputText value="#{mb.produto.quantProd}"></p:inputText>
+				
+				<p:commandButton onclick="PF('menu').hide()">
+				</p:commandButton>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
