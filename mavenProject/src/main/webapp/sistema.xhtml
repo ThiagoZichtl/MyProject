@@ -25,13 +25,13 @@
 					<p:inputNumber value="#{mb.produto.quantProd}" />
 
 					
-					<!-- <h:outputText value="Data de Registro"></h:outputText>
+					<h:outputText value="Data de Registro"></h:outputText>
 					<p:calendar value="#{mb.produto.dataProd}" pattern="dd/MM/yyyy"
 						effect="fold">
 					</p:calendar>
 					<p:calendar id="event" value="#{calendarView.date4}">
 							<p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" />
-						</p:calendar> -->
+						</p:calendar>
 
 					<p:commandButton value="Gravar" action="#{mb.gravar}" ajax="true"></p:commandButton>
 				</h:panelGrid>
@@ -52,13 +52,9 @@
 						<h:outputText value="#{linha.quantProd}" />
 					</p:column>
 					
-					<!-- <p:column headerText="Data">
+					<p:column headerText="Data">
 						<h:outputText value="data" />
-					</p:column> -->
-					<!-- <p:column headerText="Editar">
-						<p:commandButton actionListener="editar" id="iconEditar"
-							icon="ui-icon-pencil" title="Icon Only" />
-					</p:column> -->
+					</p:column>  
 
 					<p:column headerText="Editar">
 						<p:commandButton icon="ui-icon-pencil" title="Icon Only"
@@ -76,10 +72,6 @@
 						</p:commandButton>
 					</p:column>
 
-					<!-- <p:column headerText="Remover">
-						<p:commandButton actionListener="excluir" id="iconRemover"
-							icon="ui-icon-trash" title="Icon Only" />
-					</p:column> -->
 				</p:dataTable>
 			</h:form>
 		</p:tab>
