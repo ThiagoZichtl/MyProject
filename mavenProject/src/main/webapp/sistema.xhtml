@@ -24,6 +24,15 @@
 					<h:outputText value="Quantidade" />
 					<p:inputNumber value="#{mb.produto.quantProd}" />
 
+					
+					<!-- <h:outputText value="Data de Registro"></h:outputText>
+					<p:calendar value="#{mb.produto.dataProd}" pattern="dd/MM/yyyy"
+						effect="fold">
+					</p:calendar>
+					<p:calendar id="event" value="#{calendarView.date4}">
+							<p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" />
+						</p:calendar> -->
+
 					<p:commandButton value="Gravar" action="#{mb.gravar}" ajax="true"></p:commandButton>
 				</h:panelGrid>
 			</h:form>
@@ -42,36 +51,37 @@
 					<p:column headerText="Quantidade">
 						<h:outputText value="#{linha.quantProd}" />
 					</p:column>
-					<p:column headerText="Data">
-						<h:outputText value="01/01/18" />
-					</p:column>
-					<p:column headerText="Editar">
+					
+					<!-- <p:column headerText="Data">
+						<h:outputText value="data" />
+					</p:column> -->
+					<!-- <p:column headerText="Editar">
 						<p:commandButton actionListener="editar" id="iconEditar"
 							icon="ui-icon-pencil" title="Icon Only" />
+					</p:column> -->
+
+					<p:column headerText="Editar">
+						<p:commandButton icon="ui-icon-pencil" title="Icon Only"
+							update=":form3" ajax="true" onclick="PF('menu').show()">
+							<f:setPropertyActionListener value="#{linha}"
+								target="#{mb.produto}"></f:setPropertyActionListener>
+						</p:commandButton>
 					</p:column>
+
 					<p:column headerText="Remover">
+						<p:commandButton icon="ui-icon-trash" title="Icon Only"
+							update=":form4" ajax="true" onclick="PF('menu').show()">
+							<f:setPropertyActionListener value="#{linha}"
+								target="#{mb.produto}"></f:setPropertyActionListener>
+						</p:commandButton>
+					</p:column>
+
+					<!-- <p:column headerText="Remover">
 						<p:commandButton actionListener="excluir" id="iconRemover"
 							icon="ui-icon-trash" title="Icon Only" />
-					</p:column>
+					</p:column> -->
 				</p:dataTable>
 			</h:form>
-			<!-- <p:dataList rows="3" paginator="true" value="#{mb.produtos}"
-					var="linha">
-					<p:column headerText="Codigo">
-						<h:outputText value="#{linha.idProduto}" />
-					</p:column>
-
-					<p:column headerText="Nome">
-						<h:outputText value="#{linha.nomeProd}" />
-					</p:column>
-
-					<p:column headerText="Preco">
-						<h:outputText value="#{linha.precoProd}" />
-					</p:column>
-					<p:column headerText="Quantidade">
-						<h:outputText value="#{linha.quantProd}" />
-					</p:column>
-				</p:dataList> -->
 		</p:tab>
 	</p:tabView>
 	<p:dialog header="Alterar os Dados" width="consulta" modal="true"
@@ -86,11 +96,26 @@
 				<p:inputText value="#{mb.produto.precoProd}"></p:inputText>
 				<h:outputText value="Quantidade" />
 				<p:inputText value="#{mb.produto.quantProd}"></p:inputText>
-				
-				<p:commandButton onclick="PF('menu').hide()">
+
+				<p:commandButton onclick="PF('menu').hide()" value="Salvar">
 				</p:commandButton>
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>
+
+	<p:dialog header="Deseja realmente remover este produto?"
+		width="consulta" modal="true" widgetVar="menu">
+		<h:form id="form4">
+			<h:inputHidden value="#{mb.produto.idProduto}">
+			</h:inputHidden>
+			<p:panelGrid columns="2">
+				<p:commandButton onclick="PF('menu').hide()" value="Sim">
+				</p:commandButton>
+				<p:commandButton onclick="PF('menu').hide()" value="Não">
+				</p:commandButton>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
 </h:body>
 </html>
